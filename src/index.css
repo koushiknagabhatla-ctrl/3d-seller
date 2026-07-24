@@ -141,6 +141,7 @@ input, textarea, select {
 
 .btn-dark:hover {
   background: var(--accent-dark);
+  box-shadow: 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.18);
 }
 
 .btn-ghost {
@@ -153,6 +154,7 @@ input, textarea, select {
   background: var(--accent);
   border-color: var(--accent);
   color: #fff;
+  box-shadow: 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.18);
 }
 
 .btn:disabled {
@@ -211,6 +213,7 @@ input, textarea, select {
   background: var(--card);
   border-radius: var(--radius);
   overflow: hidden;
+  transition: box-shadow 0.35s var(--ease-out), transform 0.35s var(--ease-out);
 }
 
 /* underline link hover */

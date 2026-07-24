@@ -18,6 +18,7 @@ export default function ProductCard({ product, index = 0 }) {
 
   return (
     <motion.div
+      className="pcard"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
@@ -25,28 +26,6 @@ export default function ProductCard({ product, index = 0 }) {
     >
       <Link to={`/product/${product.id}`} aria-label={`View ${product.name}`}>
         <motion.div whileHover="hover" className="card-surface" style={{ position: 'relative' }}>
-          {product.badge && (
-            <span
-              style={{
-                position: 'absolute',
-                top: 14,
-                left: 14,
-                zIndex: 2,
-                background: product.badge === 'New' ? '#000' : 'var(--white)',
-                color: product.badge === 'New' ? '#f7f1e5' : '#000',
-                fontSize: '0.66rem',
-                fontWeight: 700,
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                padding: '6px 12px',
-                borderRadius: 999,
-                border: '1px solid var(--ink-06)',
-              }}
-            >
-              {product.badge}
-            </span>
-          )}
-
           <motion.div
             variants={{ hover: { scale: 1.06, rotate: -1.5 } }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -104,8 +83,13 @@ export default function ProductCard({ product, index = 0 }) {
       </Link>
 
       <style>{`
+        .pcard:hover .card-surface {
+          box-shadow: 0.5rem 0.5rem 0 rgba(0, 0, 0, 0.14);
+          transform: translate(-3px, -3px);
+        }
         @media (hover: none) {
           .quick-add { opacity: 1 !important; transform: none !important; }
+          .pcard .card-surface { box-shadow: none !important; transform: none !important; }
         }
       `}</style>
     </motion.div>
