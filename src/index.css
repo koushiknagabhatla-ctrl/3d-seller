@@ -1,0 +1,258 @@
+﻿:root {
+  --bg: #f7f1e5;
+  --ink: #000000;
+  --ink-60: rgba(0, 0, 0, 0.6);
+  --ink-40: rgba(0, 0, 0, 0.4);
+  --ink-12: rgba(0, 0, 0, 0.12);
+  --ink-06: rgba(0, 0, 0, 0.06);
+  --card: #ede4d1;
+  --white: #fffdf6;
+  --accent: #ff5c00;
+  --accent-dark: #d84e00;
+  --sans: 'Switzer', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --display: 'Clash Display', 'Switzer', -apple-system, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.76, 0, 0.24, 1);
+  --nav-h: 72px;
+  --pad: clamp(20px, 4vw, 56px);
+  --radius: 20px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--ink);
+  color: var(--bg);
+}
+
+img, svg, canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+input, textarea, select {
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+/* ---------- typography ---------- */
+
+.display {
+  font-family: var(--display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+}
+
+/* Neutralized to match the sans-throughout reference system; kept for markup compat. */
+.serif-accent {
+  font-family: inherit;
+  font-style: normal;
+  color: var(--accent);
+}
+
+.label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+}
+
+/* ---------- layout ---------- */
+
+.container {
+  width: 100%;
+  padding-inline: var(--pad);
+  margin-inline: auto;
+}
+
+.page {
+  min-height: 100vh;
+  padding-top: var(--nav-h);
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+/* ---------- buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.5s var(--ease-out), background 0.35s var(--ease-out),
+    color 0.35s var(--ease-out), border-color 0.35s var(--ease-out), opacity 0.3s;
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-dark {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn-dark:hover {
+  background: var(--accent-dark);
+}
+
+.btn-ghost {
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ---------- forms ---------- */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field input,
+.field textarea,
+.field select {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--ink-12);
+  padding: 12px 0;
+  outline: none;
+  transition: border-color 0.3s;
+  border-radius: 0;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  border-color: var(--ink);
+}
+
+.field .error {
+  color: #c0392b;
+  font-size: 0.8rem;
+}
+
+/* ---------- misc ---------- */
+
+.divider {
+  height: 1px;
+  background: var(--ink-12);
+  border: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.card-surface {
+  background: var(--card);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+/* underline link hover */
+.u-link {
+  position: relative;
+}
+
+.u-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-cinematic);
+}
+
+.u-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ink-40);
+  border-radius: 5px;
+  border: 2px solid var(--bg);
+}
